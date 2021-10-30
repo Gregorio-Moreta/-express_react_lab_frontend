@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
 
+//  Import components
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { Route, Switch } from "react-router-dom";
+
+//  Import Pages
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+
 function App() {
+  //  URL should have my heroku url for my backend, make sure that includes the trailing slash
+  const URL = "https://express-react-lab-portfolio-se.herokuapp.com/"
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/projects">
+          <Projects />
+        </Route>
+        <Route path="/about">
+          <About URL={URL}/>
+        </Route>
+      </Switch>
     </div>
   );
 }
